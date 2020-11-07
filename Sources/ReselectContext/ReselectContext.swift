@@ -16,6 +16,9 @@ import UIKit
 /// The class prepared several main APIs for them
 /// 1. `setReselect(deletedIndexPaths:)` and `commit()`
 /// 2. `reselect(deletedIndexPaths:)`
+///
+/// - Attention:
+/// Main APIs should be called **AFTER** updating table view cells. In some cases, you might have to call them in `DispatchQueue.main.async`.
 public final class ReselectContext<DataSource : TableDataSource> {
 
     // MARK: - Public Variables
