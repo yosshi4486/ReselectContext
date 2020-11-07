@@ -68,15 +68,15 @@ public final class ReselectContext<DataSource : TableDataSource> {
 
         guard let sourceItem = sourceItemWhetherDetailedPendingOrNil else { return }
 
-        // Move, insert or entering editMode.
+        // Move, insert, enter editMode or delete without containing selected row.
         if let newIndexPathForItem = dataSource.indexPath(for: sourceItem)  {
             pendingItemForSelectedRow = dataSource.item(for: newIndexPathForItem)
             return
         }
 
-        // Delete
-        if let newIndexPathWhenDeleteOccured = self.newIndexPathWhenDeleteOccured(from: deletedIndexPaths) {
-            pendingItemForSelectedRow = dataSource.item(for: newIndexPathWhenDeleteOccured)
+        // Delete with containing selected row.
+        if let newIndexPathWhenDeleteSelectedRow = self.newIndexPathWhenDeleteSelectedRow(from: deletedIndexPaths) {
+            pendingItemForSelectedRow = dataSource.item(for: newIndexPathWhenDeleteSelectedRow)
             return
         }
 
@@ -118,7 +118,7 @@ public final class ReselectContext<DataSource : TableDataSource> {
 
     // MARK: - Private Methods
     
-    private func newIndexPathWhenDeleteOccured(from deletedIndexPaths: [IndexPath]?) -> IndexPath? {
+    private func newIndexPathWhenDeleteSelectedRow(from deletedIndexPaths: [IndexPath]?) -> IndexPath? {
 
         guard let firstDeletedIndexPath = deletedIndexPaths?.first, let lastIndexPath = tableView.lastIndexPath else {
             return nil
