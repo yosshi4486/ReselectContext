@@ -22,7 +22,7 @@ public protocol TableDataSource : AnyObject {
 
 
     /// The item is detailed such as previewed at secondary pane.
-    var detailedItem: Item? { get set }
+    var detailedItem: Item? { get }
 
 }
 
