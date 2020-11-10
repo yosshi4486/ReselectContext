@@ -23,7 +23,7 @@ public final class ReselectContext<DataSource : TableDataSource> {
 
     // MARK: - Public Variables
 
-    /// The tableView you are interested in.
+    /// The tableView which you are interested in.
     public unowned var tableView: UITableView
 
 
